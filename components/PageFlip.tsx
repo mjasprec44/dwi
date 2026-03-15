@@ -42,14 +42,14 @@ export default function PageFlip({ children }: { children: React.ReactNode }) {
       showPageCorners={true}
       disableFlipByClick={false}
     >
-      <div className="h-full w-full flex items-center justify-center py-36 bg-green-950">
-        <div className="mx-auto w-40 h-40  rounded-full overflow-hidden">
+      <div className="h-full w-full flex items-center justify-center py-36 bg-[#0a2f20]">
+        <div className="mx-auto w-65 h-65 ">
           <Image
             src="/logo-square.jpg"
             alt="Logo"
-            width={160}
-            height={160}
-            className="w-full h-full object-cover"
+            width={140}
+            height={140}
+            className="w-full h-full object-contain"
           />
         </div>
       </div>

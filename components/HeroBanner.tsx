@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -14,7 +15,7 @@ export default function HeroBanner() {
       <div className="relative z-10 w-full h-full bg-black/20">
         <div className="absolute inset-0 flex flex-col items-center justify-start py-36 gap-10">
           <motion.div
-            className="w-40 h-40 rounded-full overflow-hidden"
+            className="w-65 h-65"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -24,7 +25,7 @@ export default function HeroBanner() {
               alt="Logo"
               width={160}
               height={160}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </motion.div>
           <motion.h1
