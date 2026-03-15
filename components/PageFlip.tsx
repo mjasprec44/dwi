@@ -2,8 +2,9 @@
 
 import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
-export default function PageFlip() {
+export default function PageFlip({ children }: { children: React.ReactNode }) {
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export default function PageFlip() {
       minHeight={300}
       maxHeight={3000}
       drawShadow={true}
-      flippingTime={1200}
+      flippingTime={1800}
       usePortrait={true}
       startZIndex={0}
       autoSize={true}
@@ -41,14 +42,18 @@ export default function PageFlip() {
       showPageCorners={true}
       disableFlipByClick={false}
     >
-      <div className="h-full w-full bg-red-500 text-black">First Page</div>
-      <div className="h-full w-full bg-green-500 text-black">Second Page</div>
-      <div className="h-full w-full bg-blue-500 text-black">Third Page</div>
-      <div className="h-full w-full bg-yellow-500 text-black">Fourth Page</div>
-      <div className="h-full w-full bg-purple-500 text-black">Fifth Page</div>
-      <div className="h-full w-full bg-orange-500 text-black">Sixth Page</div>
-      <div className="h-full w-full bg-pink-500 text-black">Seventh Page</div>
-      <div className="h-full w-full bg-gray-500 text-black">Eighth Page</div>
+      <div className="h-full w-full flex items-center justify-center py-36 bg-green-950">
+        <div className="mx-auto w-40 h-40  rounded-full overflow-hidden">
+          <Image
+            src="/logo-square.jpg"
+            alt="Logo"
+            width={160}
+            height={160}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+      {children}
     </HTMLFlipBook>
   );
 }

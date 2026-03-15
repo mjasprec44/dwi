@@ -1,58 +1,12 @@
-"use client";
-import HTMLFlipBook from "react-pageflip";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import HeroBanner from "@/components/HeroBanner";
+import PageFlip from "@/components/PageFlip";
 
 export default function Home() {
-  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-
-  useEffect(() => {
-    function update() {
-      setDimensions({ width: window.innerWidth, height: window.innerHeight });
-    }
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
   return (
-    <HTMLFlipBook
-      width={dimensions.width}
-      height={dimensions.height}
-      className="bg-white"
-      style={{ width: "100vw", minHeight: "100vh", maxHeight: "100vh" }}
-      startPage={0}
-      size="stretch"
-      minWidth={300}
-      maxWidth={3000}
-      minHeight={300}
-      maxHeight={3000}
-      drawShadow={true}
-      flippingTime={1200}
-      usePortrait={true}
-      startZIndex={0}
-      autoSize={true}
-      maxShadowOpacity={0.5}
-      showCover={false}
-      mobileScrollSupport={true}
-      clickEventForward={true}
-      useMouseEvents={true}
-      swipeDistance={30}
-      showPageCorners={true}
-      disableFlipByClick={false}
-    >
-      <div className="h-full w-full p-4 bg-green-950">
-        <div className="mx-auto w-40 h-40  rounded-full overflow-hidden">
-          <Image
-            src="/logo-square.jpg"
-            alt="Logo"
-            width={160}
-            height={160}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-      <div className="h-full w-full bg-white text-black">
+    <PageFlip>
+      <div className="relative h-full w-full bg-white overflow-hidden">
         {/* Hero Banner */}
+        <HeroBanner />
         {/* Count Down Timer */}
         {/* Gallery */}
         {/* Google Map */}
@@ -64,6 +18,6 @@ export default function Home() {
         {/* RSVP Form */}
         {/* Footer */}
       </div>
-    </HTMLFlipBook>
+    </PageFlip>
   );
 }
