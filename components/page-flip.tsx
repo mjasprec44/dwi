@@ -1,9 +1,9 @@
 "use client";
+
 import HTMLFlipBook from "react-pageflip";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
-export default function Home() {
+export default function PageFlip() {
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
 
   useEffect(() => {
@@ -14,6 +14,7 @@ export default function Home() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
   return (
     <HTMLFlipBook
       width={dimensions.width}
@@ -40,30 +41,14 @@ export default function Home() {
       showPageCorners={true}
       disableFlipByClick={false}
     >
-      <div className="h-full w-full p-4 bg-green-950">
-        <div className="mx-auto w-40 h-40  rounded-full overflow-hidden">
-          <Image
-            src="/logo-square.jpg"
-            alt="Logo"
-            width={160}
-            height={160}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </div>
-      <div className="h-full w-full bg-white text-black">
-        {/* Hero Banner */}
-        {/* Count Down Timer */}
-        {/* Gallery */}
-        {/* Google Map */}
-        {/* Food & Drink Menu */}
-        {/* Dress Code */}
-        {/* Sponsors */}
-        {/* Entourage */}
-        {/* Gifts */}
-        {/* RSVP Form */}
-        {/* Footer */}
-      </div>
+      <div className="h-full w-full bg-red-500 text-black">First Page</div>
+      <div className="h-full w-full bg-green-500 text-black">Second Page</div>
+      <div className="h-full w-full bg-blue-500 text-black">Third Page</div>
+      <div className="h-full w-full bg-yellow-500 text-black">Fourth Page</div>
+      <div className="h-full w-full bg-purple-500 text-black">Fifth Page</div>
+      <div className="h-full w-full bg-orange-500 text-black">Sixth Page</div>
+      <div className="h-full w-full bg-pink-500 text-black">Seventh Page</div>
+      <div className="h-full w-full bg-gray-500 text-black">Eighth Page</div>
     </HTMLFlipBook>
   );
 }
