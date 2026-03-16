@@ -1,6 +1,7 @@
 import HeroBanner from "@/components/HeroBanner";
 import DateCountDown from "@/components/DateCountDown";
 import PageFlip from "@/components/PageFlip";
+import Gallery from "@/components/Gallery";
 
 function MainPage() {
   return (
@@ -12,6 +13,7 @@ function MainPage() {
       <DateCountDown date="March 26, 2026" />
 
       {/* Gallery */}
+      <Gallery />
       {/* Google Map */}
       {/* Food & Drink Menu */}
       {/* Dress Code */}
