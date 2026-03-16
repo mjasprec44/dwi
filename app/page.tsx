@@ -2,6 +2,7 @@ import HeroBanner from "@/components/HeroBanner";
 import DateCountDown from "@/components/DateCountDown";
 import PageFlip from "@/components/PageFlip";
 import Gallery from "@/components/Gallery";
+import Location from "@/components/Location";
 
 function MainPage() {
   return (
@@ -14,7 +15,8 @@ function MainPage() {
 
       {/* Gallery */}
       <Gallery />
-      {/* Google Map */}
+      {/* Location / Google Map */}
+      <Location />
       {/* Food & Drink Menu */}
       {/* Dress Code */}
       {/* Sponsors */}
