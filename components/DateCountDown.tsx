@@ -37,8 +37,8 @@ export default function DateCountDown({ date }: { date: string }) {
   ];
 
   return (
-    <div className="py-16 px-4 flex flex-col items-center gap-2">
-      <p className="text-lg uppercase tracking-widest text-gray-500 font-serif">
+    <div className="py-16 px-4 flex flex-col items-center">
+      <p className="text-lg uppercase tracking-widest text-gray-500 font-serif font-semibold">
         Counting down to the big day
       </p>
       <div className="flex gap-4">
@@ -47,7 +47,7 @@ export default function DateCountDown({ date }: { date: string }) {
             <span className="text-5xl font-light tabular-nums text-green-950 font-serif">
               {pad(value)}
             </span>
-            <span className="text-xs uppercase tracking-widest text-gray-400 mt-1 font-mono">
+            <span className="text-[10px] leading-3 uppercase tracking-wide text-gray-400 mt-2 font-mono font-semibold">
               {label}
             </span>
           </div>
