@@ -1,13 +1,19 @@
 import HeroBanner from "@/components/HeroBanner";
+import DateCountDown from "@/components/DateCountDown";
 import PageFlip from "@/components/PageFlip";
 
 export default function Home() {
   return (
     <PageFlip>
-      <div className="relative h-full w-full bg-white overflow-hidden">
+      <div className="w-full bg-white overflow-y-auto">
         {/* Hero Banner */}
+
         <HeroBanner />
+
         {/* Count Down Timer */}
+
+        <DateCountDown date="March 26, 2026" />
+
         {/* Gallery */}
         {/* Google Map */}
         {/* Food & Drink Menu */}

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroBanner() {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-screen">
       <Image
         src="/hero-1.jpg"
         alt="Hero Banner"
