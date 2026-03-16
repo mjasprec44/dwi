@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { usePageFlipVisible } from "@/components/PageFlip";
+import { usePageFlipVisible } from "./PageFlip";
 
 export default function HeroBanner() {
   const isVisible = usePageFlipVisible();

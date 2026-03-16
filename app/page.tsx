@@ -1,7 +1,7 @@
-import HeroBanner from "@/components/HeroBanner";
-import DateCountDown from "@/components/DateCountDown";
-import PageFlip from "@/components/PageFlip";
-import Gallery from "@/components/Gallery";
+import HeroBanner from "../components/HeroBanner";
+import DateCountDown from "../components/DateCountDown";
+import PageFlip from "../components/PageFlip";
+import Gallery from "../components/Gallery";
 
 function MainPage() {
   return (
