@@ -10,7 +10,7 @@ function MainPage() {
       <HeroBanner />
 
       {/* Count Down Timer */}
-      <DateCountDown date="March 26, 2026" />
+      <DateCountDown date="November 27, 2026" />
 
       {/* Gallery */}
       <Gallery />
