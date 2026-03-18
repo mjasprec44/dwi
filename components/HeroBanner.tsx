@@ -22,7 +22,7 @@ export default function HeroBanner() {
       <div className="relative z-10 w-full h-full bg-black/20">
         <div className="absolute inset-0 flex flex-col items-center justify-start py-36 gap-10">
           <motion.div
-            className="w-75 h-75"
+            className="relative h-[380px] w-[380px] shrink-0"
             initial={{ opacity: 0, y: 100 }}
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
             transition={{ duration: 0.5, ease: "easeIn" }}
@@ -30,9 +30,9 @@ export default function HeroBanner() {
             <Image
               src="/logo-transparent.png"
               alt="Logo"
-              width={180}
-              height={180}
-              className="w-full h-full object-contain"
+              fill
+              className="object-cover object-center"
+              sizes="380px"
             />
           </motion.div>
           <motion.h1
