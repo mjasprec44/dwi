@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 function getTimeLeft(date: Date) {
   const diff = date.getTime() - Date.now();
@@ -18,6 +19,8 @@ function pad(n: number) {
 }
 
 export default function DateCountDown({ date }: { date: string }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isInView, setIsInView] = useState(false);
   const parsedDate = new Date(date);
   const [timeLeft, setTimeLeft] = useState(() => getTimeLeft(parsedDate));
 
@@ -29,30 +32,57 @@ export default function DateCountDown({ date }: { date: string }) {
     return () => clearInterval(interval);
   }, [date]);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.25, rootMargin: "0px" },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   const units = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: "Days", value: timeLeft.days, delay: 0.2 },
+    { label: "Hours", value: timeLeft.hours, delay: 0.35 },
+    { label: "Minutes", value: timeLeft.minutes, delay: 0.5 },
+    { label: "Seconds", value: timeLeft.seconds, delay: 0.65 },
   ];
 
   return (
-    <div className="py-16 px-4 flex flex-col items-center">
-      <p className="text-lg uppercase tracking-widest text-gray-500 font-serif font-semibold">
+    <section ref={sectionRef} className="py-16 px-4 flex flex-col items-center">
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.5, delay: 0, ease: "easeIn" }}
+        className="text-lg uppercase tracking-widest text-gray-500 font-serif font-semibold"
+      >
         Counting down to the big day
-      </p>
+      </motion.p>
       <div className="flex gap-4">
-        {units.map(({ label, value }) => (
+        {units.map(({ label, value, delay }) => (
           <div key={label} className="flex flex-col items-center">
-            <span className="text-5xl font-light tabular-nums text-green-950 font-serif">
+            <motion.span
+              initial={{ opacity: 0, y: 100 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+              transition={{ duration: 0.5, delay, ease: "easeIn" }}
+              className="text-5xl font-light tabular-nums text-green-950 font-serif"
+            >
               {pad(value)}
-            </span>
-            <span className="text-[10px] leading-3 uppercase tracking-wide text-gray-400 mt-2 font-mono font-semibold">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 1.5, delay: delay + 0.1, ease: "easeIn" }}
+              className="text-[10px] leading-3 uppercase tracking-wide text-gray-400 mt-2 font-mono font-semibold"
+            >
               {label}
-            </span>
+            </motion.span>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

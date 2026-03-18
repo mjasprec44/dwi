@@ -33,7 +33,7 @@ export default function PageFlip({ children }: { children: React.ReactNode }) {
 
   return (
     <PageFlipContext.Provider value={isMainPageVisible}>
-      <audio ref={audioRef} src="/audio.mp3" loop />
+      <audio ref={audioRef} src="/yellow.mp3" loop />
       <HTMLFlipBook
         width={dimensions.width}
         height={dimensions.height}
@@ -63,17 +63,18 @@ export default function PageFlip({ children }: { children: React.ReactNode }) {
           startAudio();
         }}
       >
-        <div
-          className="h-full w-full flex items-center justify-center py-36 bg-[#0a2f20]"
-          onClick={startAudio}
-        >
-          <div className="mx-auto w-65 h-65 ">
+        <div className="relative">
+          <div
+            className="absolute inset-0 cursor-pointer overflow-hidden bg-[#f5f2eb]"
+            onClick={startAudio}
+          >
             <Image
-              src="/logo-square.jpg"
-              alt="Logo"
-              width={140}
-              height={140}
-              className="w-full h-full object-contain"
+              src="/ron-pam-book-cover.png"
+              alt="Wedding invitation cover"
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              priority
             />
           </div>
         </div>

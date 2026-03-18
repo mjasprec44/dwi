@@ -39,10 +39,6 @@ export default function Gallery() {
           initial={{ opacity: 0, y: 100 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
-          //   className={`absolute inset-0 gap-12 flex flex-col items-center justify-center p-4 transition-opacity duration-500 ${
-          //     isInView ? "opacity-100" : "opacity-0 pointer-events-none"
-          //   }`}
-
           className="absolute inset-0 gap-12 flex flex-col items-center justify-center p-4"
         >
           <div className="font-mea-culpa flex flex-wrap items-center justify-center gap-2 text-center">
