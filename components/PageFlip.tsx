@@ -1,29 +1,53 @@
 "use client";
 
 import HTMLFlipBook from "react-pageflip";
-import { useState, useEffect, useRef, createContext, useContext } from "react";
+import {
+  useState,
+  useRef,
+  useSyncExternalStore,
+  createContext,
+  useContext,
+} from "react";
 import Image from "next/image";
 
 const PageFlipContext = createContext(false);
+
+const VIEWPORT_DEFAULT = { width: 390, height: 844 };
+
+let viewportCache: { width: number; height: number } | null = null;
+
+function subscribeViewport(cb: () => void) {
+  window.addEventListener("resize", cb);
+  return () => window.removeEventListener("resize", cb);
+}
+
+function getViewportSnapshot() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  if (
+    viewportCache &&
+    viewportCache.width === width &&
+    viewportCache.height === height
+  ) {
+    return viewportCache;
+  }
+  viewportCache = { width, height };
+  return viewportCache;
+}
 
 export function usePageFlipVisible() {
   return useContext(PageFlipContext);
 }
 
 export default function PageFlip({ children }: { children: React.ReactNode }) {
-  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+  const dimensions = useSyncExternalStore(
+    subscribeViewport,
+    getViewportSnapshot,
+    () => VIEWPORT_DEFAULT,
+  );
   const [currentPage, setCurrentPage] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const isMainPageVisible = currentPage === 1;
-
-  useEffect(() => {
-    function update() {
-      setDimensions({ width: window.innerWidth, height: window.innerHeight });
-    }
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
 
   function startAudio() {
     if (audioRef.current && audioRef.current.paused) {
@@ -33,7 +57,7 @@ export default function PageFlip({ children }: { children: React.ReactNode }) {
 
   return (
     <PageFlipContext.Provider value={isMainPageVisible}>
-      <audio ref={audioRef} src="/yellow.mp3" loop />
+      <audio ref={audioRef} src="/yellow.mp3" loop preload="none" />
       <HTMLFlipBook
         width={dimensions.width}
         height={dimensions.height}

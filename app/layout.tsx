@@ -1,32 +1,25 @@
 import type { Metadata } from "next";
-import {
-  Geist,
-  Geist_Mono,
-  Cormorant_Garamond,
-  Mea_Culpa,
-} from "next/font/google";
+import { Geist, Cormorant_Garamond, Mea_Culpa } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "600"],
+  display: "swap",
 });
 
 const meaCulpa = Mea_Culpa({
   variable: "--font-mea-culpa",
   subsets: ["latin"],
   weight: ["400"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -41,8 +34,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          href="/ron-pam-book-cover.png"
+          as="image"
+          fetchPriority="high"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} ${meaCulpa.variable} antialiased`}
+        className={`${geistSans.variable} ${cormorant.variable} ${meaCulpa.variable} antialiased`}
       >
         {children}
       </body>

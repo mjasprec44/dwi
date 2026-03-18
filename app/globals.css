@@ -21,7 +21,8 @@ body {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas,
+    monospace;
   --font-serif: var(--font-cormorant);
   --font-mea-culpa: var(--font-mea-culpa);
 }

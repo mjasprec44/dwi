@@ -6,35 +6,40 @@ import { useRef, useState, useEffect } from "react";
 export default function Gallery() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.25, rootMargin: "0px" },
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        if (entry.isIntersecting) setLoadVideo(true);
+      },
+      { threshold: 0.15, rootMargin: "120px" },
     );
     observer.observe(section);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[200vh]">
-      {/* Parallax sticky video layer */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/video-2.mp4" type="video/mp4" />
-        </video>
+    <section ref={sectionRef} className="relative w-full">
+      <div className="relative flex h-screen w-full flex-col justify-center overflow-hidden bg-[#0a2f20]">
+        {loadVideo ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/video-2.mp4" type="video/mp4" />
+          </video>
+        ) : null}
         <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
-        {/* Text: visible only while section is in view */}
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
@@ -63,7 +68,6 @@ export default function Gallery() {
           </div>
         </motion.div>
       </div>
-      <div className="h-screen" aria-hidden />
     </section>
   );
 }
