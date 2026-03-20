@@ -25,6 +25,7 @@ body {
     monospace;
   --font-serif: var(--font-cormorant);
   --font-mea-culpa: var(--font-mea-culpa);
+  --font-lexend-peta: var(--font-lexend-peta);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -3,6 +3,7 @@ import DateCountDown from "@/components/DateCountDown";
 import PageFlip from "@/components/PageFlip";
 import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
+import Invitation from "@/components/Invitation";
 
 function MainPage() {
   return (
@@ -17,6 +18,9 @@ function MainPage() {
       <Gallery />
       {/* Location / Google Map */}
       <Location />
+
+      {/* Invitation */}
+      <Invitation />
       {/* Food & Drink Menu */}
       {/* Dress Code */}
       {/* Sponsors */}

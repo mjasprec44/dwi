@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Cormorant_Garamond, Mea_Culpa } from "next/font/google";
+import {
+  Geist,
+  Cormorant_Garamond,
+  Mea_Culpa,
+  Lexend_Peta,
+} from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,6 +22,13 @@ const cormorant = Cormorant_Garamond({
 
 const meaCulpa = Mea_Culpa({
   variable: "--font-mea-culpa",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const lexendPeta = Lexend_Peta({
+  variable: "--font-lexend-peta",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
@@ -43,7 +55,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${cormorant.variable} ${meaCulpa.variable} antialiased`}
+        className={`${geistSans.variable} ${cormorant.variable} ${meaCulpa.variable} ${lexendPeta.variable} antialiased`}
       >
         {children}
       </body>
